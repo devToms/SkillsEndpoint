@@ -88,7 +88,7 @@ class Application
     #[Assert\NotBlank]
     private ?string $position = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 7)]
     private ?string $level = null;
 
     #[ORM\Column]

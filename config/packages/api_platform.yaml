@@ -10,6 +10,10 @@ api_platform:
     http_cache:
         public: true
     defaults:
+        pagination_client_enabled: true
+        collection:
+           pagination:
+               enabled_parameter_name: pagination # optional
         stateless: true
         cache_headers:
             vary: ['Content-Type', 'Authorization', 'Origin']
