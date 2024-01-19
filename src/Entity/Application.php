@@ -24,7 +24,11 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
         ),
         new Get(
             uriTemplate: '/application/{id}',
-            requirements: ['id' => '\d+']
+            requirements: ['id' => '\d+'],
+            cacheHeaders: [
+             'max_age' => 60,  // 1 minuta
+             'shared_max_age' => 120  // 2 minuty
+         ]
         ),
     ]
 )]
@@ -33,6 +37,10 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
         new GetCollection(
             uriTemplate: '/application/new-aplications',
             controller: NewApplicationsController::class,
+            cacheHeaders: [
+              'max_age' => 3600,  // 1 godzina
+              'shared_max_age' => 7200  // 2 godziny
+          ]
         ),
     ]
 )]
@@ -40,7 +48,11 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
     operations: [
         new GetCollection(
             uriTemplate: '/application/read-apliactions',
-            controller: ReadApplicationsController::class
+            controller: ReadApplicationsController::class,
+            cacheHeaders: [
+             'max_age' => 86400,  // 1 dzień
+             'shared_max_age' => 604800  // 7 dni
+         ]
         ),
     ]
 )
