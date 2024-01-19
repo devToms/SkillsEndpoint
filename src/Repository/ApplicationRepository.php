@@ -29,35 +29,35 @@ class ApplicationRepository extends ServiceEntityRepository
 
         foreach ($orderBy as $field => $direction) {
             if (in_array($field, ['id', 'firstName', 'lastName', 'email', 'phoneNumber', 'expectedSalary', 'position', 'level', 'isRead'])) {
-                $queryBuilder->addOrderBy('a.' . $field, $direction);
+                $queryBuilder->addOrderBy('a.'.$field, $direction);
             }
         }
 
         return $queryBuilder->getQuery()->getResult();
     }
 
-//    /**
-//     * @return Application[] Returns an array of Application objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //    /**
+    //     * @return Application[] Returns an array of Application objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('a')
+    //            ->andWhere('a.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('a.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-//    public function findOneBySomeField($value): ?Application
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?Application
+    //    {
+    //        return $this->createQueryBuilder('a')
+    //            ->andWhere('a.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

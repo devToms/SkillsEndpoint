@@ -2,18 +2,14 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\ApiFilter;
-use ApiPlatform\Doctrine\Orm\Filter\NumericFilter;
-use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
-use ApiPlatform\Serializer\Filter\PropertyFilter;
+use ApiPlatform\Metadata\Post;
 use App\Controller\NewApplicationsController;
 use App\Controller\ReadApplicationsController;
-
-
 use App\Repository\ApplicationRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -22,12 +18,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     operations: [
         new Post(
-              uriTemplate: '/application/create'
+            uriTemplate: '/application/create'
         ),
         new Get(
-          uriTemplate: '/application/{id}',
-          requirements: ['id' => '\d+']
-        )
+            uriTemplate: '/application/{id}',
+            requirements: ['id' => '\d+']
+        ),
     ]
 )]
 #[ApiResource(
@@ -35,7 +31,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new GetCollection(
             uriTemplate: '/application/new-aplications',
             controller: NewApplicationsController::class,
-        )
+        ),
     ]
 )]
 #[ApiResource(
@@ -43,12 +39,10 @@ use Symfony\Component\Validator\Constraints as Assert;
         new GetCollection(
             uriTemplate: '/application/read-apliactions',
             controller: ReadApplicationsController::class
-        )
+        ),
     ]
 )
 ]
-
-
 #[ApiFilter(OrderFilter::class, properties: [
   'id',
   'firstName',
@@ -58,7 +52,7 @@ use Symfony\Component\Validator\Constraints as Assert;
   'expectedSalary',
   'position',
   'level',
-  'isRead'
+  'isRead',
   ])]
 class Application
 {
@@ -82,7 +76,7 @@ class Application
 
     #[ORM\Column(length: 15)]
     #[Assert\NotBlank]
-    #[Assert\Regex("/^[0-9]+$/")]
+    #[Assert\Regex('/^[0-9]+$/')]
     private ?string $phoneNumber = null;
 
     #[ORM\Column]
