@@ -54,6 +54,7 @@ use Symfony\Component\Validator\Constraints as Assert;
   'level',
   'isRead',
   ])]
+#[UniqueEntity('email')]
 class Application
 {
     #[ORM\Id]
