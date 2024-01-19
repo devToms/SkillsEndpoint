@@ -12,9 +12,9 @@ use App\Controller\NewApplicationsController;
 use App\Controller\ReadApplicationsController;
 use App\Repository\ApplicationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: ApplicationRepository::class)]
 #[ApiResource(
@@ -56,8 +56,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
   'level',
   'isRead',
   ])]
-// #[UniqueEntity('email')]
-// #[UniqueEntity('phoneNumber')]
 class Application
 {
     #[ORM\Id]
@@ -211,7 +209,19 @@ class Application
     public static function loadValidatorMetadata(ClassMetadata $metadata): void
     {
         $metadata->addConstraint(new UniqueEntity([
-            'fields' => 'email',
+          'fields' => 'firstName'
+        ]));
+
+        $metadata->addConstraint(new UniqueEntity([
+          'fields' => 'lastName'
+        ]));
+
+        $metadata->addConstraint(new UniqueEntity([
+          'fields' => 'phoneNumber'
+        ]));
+
+        $metadata->addConstraint(new UniqueEntity([
+            'fields' => 'email'
         ]));
 
         $metadata->addPropertyConstraint('email', new Assert\Email());
