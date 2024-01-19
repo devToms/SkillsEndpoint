@@ -82,7 +82,7 @@ class Application
 
     #[ORM\Column(length: 15)]
     #[Assert\NotBlank]
-    #[Assert\Regex('/^\(0\)[0-9]*$')]
+    #[Assert\Regex("/^[0-9]+$/")]
     private ?string $phoneNumber = null;
 
     #[ORM\Column]
