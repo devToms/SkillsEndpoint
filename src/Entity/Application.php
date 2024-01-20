@@ -18,6 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 #[ORM\Entity(repositoryClass: ApplicationRepository::class)]
+#[Index(name: "id_idx", fields: ["id"])]
 #[ApiResource(
     operations: [
         new Post(
@@ -69,7 +70,6 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
   'level',
   'isRead',
   ])]
-#[Index(name: "id_idx", fields: ["id"])]
 class Application
 {
   use ApplicationValidationTrait;
