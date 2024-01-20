@@ -218,25 +218,4 @@ class Application
 
         return $this;
     }
-
-    // public static function loadValidatorMetadata(ClassMetadata $metadata): void
-    // {
-    //     $metadata->addConstraint(new UniqueEntity([
-    //       'fields' => 'firstName'
-    //     ]));
-    //
-    //     $metadata->addConstraint(new UniqueEntity([
-    //       'fields' => 'lastName'
-    //     ]));
-    //
-    //     $metadata->addConstraint(new UniqueEntity([
-    //       'fields' => 'phoneNumber'
-    //     ]));
-    //
-    //     $metadata->addConstraint(new UniqueEntity([
-    //         'fields' => 'email'
-    //     ]));
-    //
-    //     $metadata->addPropertyConstraint('email', new Assert\Email());
-    // }
 }
