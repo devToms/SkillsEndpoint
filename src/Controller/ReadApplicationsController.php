@@ -15,7 +15,7 @@ class ReadApplicationsController extends AbstractController
 
     public function __invoke(Request $request): array
     {
-        $order = $request->query->all();
+        $orderBy = $request->query->all();
 
         $application = $this->applicationRepository->findByReadStatusAndOrder('read', $orderBy['order']);
 

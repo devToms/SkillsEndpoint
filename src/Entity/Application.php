@@ -70,6 +70,8 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
   ])]
 class Application
 {
+  use ApplicationValidationTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -86,7 +88,6 @@ class Application
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\Email]
-    // #[ORM\Column(unique: true)]
     private ?string $email = null;
 
     #[ORM\Column(length: 15)]
@@ -218,24 +219,24 @@ class Application
         return $this;
     }
 
-    public static function loadValidatorMetadata(ClassMetadata $metadata): void
-    {
-        $metadata->addConstraint(new UniqueEntity([
-          'fields' => 'firstName'
-        ]));
-
-        $metadata->addConstraint(new UniqueEntity([
-          'fields' => 'lastName'
-        ]));
-
-        $metadata->addConstraint(new UniqueEntity([
-          'fields' => 'phoneNumber'
-        ]));
-
-        $metadata->addConstraint(new UniqueEntity([
-            'fields' => 'email'
-        ]));
-
-        $metadata->addPropertyConstraint('email', new Assert\Email());
-    }
+    // public static function loadValidatorMetadata(ClassMetadata $metadata): void
+    // {
+    //     $metadata->addConstraint(new UniqueEntity([
+    //       'fields' => 'firstName'
+    //     ]));
+    //
+    //     $metadata->addConstraint(new UniqueEntity([
+    //       'fields' => 'lastName'
+    //     ]));
+    //
+    //     $metadata->addConstraint(new UniqueEntity([
+    //       'fields' => 'phoneNumber'
+    //     ]));
+    //
+    //     $metadata->addConstraint(new UniqueEntity([
+    //         'fields' => 'email'
+    //     ]));
+    //
+    //     $metadata->addPropertyConstraint('email', new Assert\Email());
+    // }
 }
