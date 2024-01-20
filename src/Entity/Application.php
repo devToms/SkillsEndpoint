@@ -8,6 +8,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
+use Symfony\Component\Serializer\Annotation\Groups;
 use App\Controller\NewApplicationsController;
 use App\Controller\ReadApplicationsController;
 use App\Repository\ApplicationRepository;
@@ -20,17 +21,20 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 #[ORM\Entity(repositoryClass: ApplicationRepository::class)]
 #[Index(name: "id_idx", fields: ["id"])]
 #[ApiResource(
+    normalizationContext: ['groups' => ['read']],
+    denormalizationContext: ['groups' => ['write']],
     operations: [
         new Post(
-            uriTemplate: '/application/create'
+            uriTemplate: '/application/create',
+            denormalizationContext: ['groups' => ['write']],
         ),
         new Get(
             uriTemplate: '/application/{id}',
             requirements: ['id' => '\d+'],
             cacheHeaders: [
-             'max_age' => 60,  // 1 minuta
-             'shared_max_age' => 120  // 2 minuty
-         ]
+                'max_age' => 60,  // 1 minuta
+                'shared_max_age' => 120  // 2 minuty
+            ]
         ),
     ]
 )]
@@ -40,9 +44,9 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
             uriTemplate: '/application/new-aplications',
             controller: NewApplicationsController::class,
             cacheHeaders: [
-              'max_age' => 3600,  // 1 godzina
-              'shared_max_age' => 7200  // 2 godziny
-          ]
+                'max_age' => 3600,  // 1 godzina
+                'shared_max_age' => 7200  // 2 godziny
+            ]
         ),
     ]
 )]
@@ -52,13 +56,12 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
             uriTemplate: '/application/read-apliactions',
             controller: ReadApplicationsController::class,
             cacheHeaders: [
-             'max_age' => 86400,  // 1 dzień
-             'shared_max_age' => 604800  // 7 dni
-         ]
+                'max_age' => 86400,  // 1 dzień
+                'shared_max_age' => 604800  // 7 dni
+            ]
         ),
     ]
-)
-]
+)]
 #[ApiFilter(OrderFilter::class, properties: [
   'id',
   'firstName',
@@ -72,43 +75,52 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
   ])]
 class Application
 {
-  use ApplicationValidationTrait;
+    use ApplicationValidationTrait;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['read', 'write'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
+    #[Groups(['read', 'write'])]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
+    #[Groups(['read', 'write'])]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\Email]
+    #[Groups(['read', 'write'])]
     private ?string $email = null;
 
     #[ORM\Column(length: 15)]
     #[Assert\NotBlank]
     #[Assert\Regex('/^[0-9]+$/')]
+    #[Groups(['read', 'write'])]
     private ?string $phoneNumber = null;
 
     #[ORM\Column]
     #[Assert\NotBlank]
+    #[Groups(['read', 'write'])]
     private ?int $expectedSalary = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
+    #[Groups(['read', 'write'])]
     private ?string $position = null;
 
     #[ORM\Column(length: 7)]
+    #[Groups(['read', 'write'])]
     private ?string $level = null;
 
     #[ORM\Column]
+    #[Groups(['read', 'write'])]
     private ?string $isRead = 'new';
 
     public function getId(): ?int
