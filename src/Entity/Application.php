@@ -12,6 +12,7 @@ use App\Controller\NewApplicationsController;
 use App\Controller\ReadApplicationsController;
 use App\Repository\ApplicationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Index;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
@@ -68,6 +69,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
   'level',
   'isRead',
   ])]
+#[Index(name: "id_idx", fields: ["id"])]
 class Application
 {
   use ApplicationValidationTrait;
