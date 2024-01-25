@@ -29,11 +29,11 @@ class ApplicationReadListener implements EventSubscriberInterface
 
         $application = $this->applicationRepository->findOneBy([
           'id' => $id,
-          'isRead' => 'new',
+          'isRead' => false,
         ]);
 
         if ($application) {
-            $application->setIsRead('read');
+            $application->setIsRead(true);
 
             $this->manager->flush();
         }
