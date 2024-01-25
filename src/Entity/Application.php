@@ -119,9 +119,8 @@ class Application
     #[Groups(['read', 'write'])]
     private ?string $level = null;
 
-    #[ORM\Column(options: ['default' => false])]
-    #[Groups(['read', 'write'])]
-    private ?bool $isRead;
+    #[ORM\Column(type: 'boolean')]
+    private ?bool $isRead = false;
 
     public function getId(): ?int
     {
