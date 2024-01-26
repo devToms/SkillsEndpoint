@@ -17,7 +17,5 @@ trait ApplicationValidationTrait
         $metadata->addConstraint(new UniqueEntity([
             'fields' => 'email'
         ]));
-
-        $metadata->addPropertyConstraint('email', new Assert\Email());
     }
 }
