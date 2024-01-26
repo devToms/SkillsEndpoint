@@ -26,7 +26,6 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
     operations: [
         new Post(
             uriTemplate: '/application/create',
-            denormalizationContext: ['groups' => ['write']],
         ),
         new Get(
             uriTemplate: '/application/{id}',
@@ -116,9 +115,9 @@ class Application
     private ?string $position = null;
 
     #[ORM\Column(length: 7)]
-    #[Groups(['read', 'write'])]
+    #[Groups(['read'])]
     private ?string $level = null;
-
+    #[Groups(['read'])]
     #[ORM\Column(type: 'boolean')]
     private ?bool $isRead = false;
 
