@@ -25,7 +25,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
     denormalizationContext: ['groups' => ['write']],
     operations: [
         new Post(
-            uriTemplate: '/application/create',
+            uriTemplate: '/application/create'
         ),
         new Get(
             uriTemplate: '/application/{id}',
