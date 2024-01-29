@@ -37,8 +37,8 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
                 'shared_max_age' => 120  // 2 minuty
             ]
         ),
-        new Delete(),
-        new Put()
+        new Put(),
+        new Delete()
     ]
 )]
 #[ApiResource(
@@ -121,7 +121,7 @@ class Application
     #[ORM\Column(length: 7)]
     #[Groups(['read'])]
     private ?string $level = null;
-    
+
     #[Groups(['read'])]
     #[ORM\Column(type: 'boolean')]
     private ?bool $isRead = false;
