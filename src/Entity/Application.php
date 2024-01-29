@@ -5,9 +5,11 @@ namespace App\Entity;
 use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Put;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\GetCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use App\Controller\NewApplicationsController;
 use App\Controller\ReadApplicationsController;
@@ -35,6 +37,8 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
                 'shared_max_age' => 120  // 2 minuty
             ]
         ),
+        new Delete(),
+        new Put()
     ]
 )]
 #[ApiResource(
@@ -117,6 +121,7 @@ class Application
     #[ORM\Column(length: 7)]
     #[Groups(['read'])]
     private ?string $level = null;
+    
     #[Groups(['read'])]
     #[ORM\Column(type: 'boolean')]
     private ?bool $isRead = false;
