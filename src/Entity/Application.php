@@ -78,7 +78,6 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
   ])]
 class Application
 {
-    // use ApplicationValidationTrait;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
