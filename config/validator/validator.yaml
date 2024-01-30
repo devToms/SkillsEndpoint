@@ -1,0 +1,7 @@
+
+App\Entity\Application:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+              fields: ['email']
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+              fields: ['phoneNumber']

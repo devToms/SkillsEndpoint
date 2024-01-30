@@ -78,7 +78,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
   ])]
 class Application
 {
-    use ApplicationValidationTrait;
+    // use ApplicationValidationTrait;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -98,7 +98,6 @@ class Application
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
-    #[Assert\Email]
     #[Groups(['read', 'write'])]
     private ?string $email = null;
 
