@@ -5,23 +5,21 @@ namespace App\Entity;
 use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
-use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Controller\NewApplicationsController;
 use App\Controller\ReadApplicationsController;
 use App\Repository\ApplicationRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Index;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 #[ORM\Entity(repositoryClass: ApplicationRepository::class)]
-#[Index(name: "id_idx", fields: ["id"])]
+#[Index(name: 'id_idx', fields: ['id'])]
 #[ApiResource(
     normalizationContext: ['groups' => ['read']],
     denormalizationContext: ['groups' => ['write']],
@@ -34,11 +32,11 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
             requirements: ['id' => '\d+'],
             cacheHeaders: [
                 'max_age' => 60,  // 1 minuta
-                'shared_max_age' => 120  // 2 minuty
+                'shared_max_age' => 120,  // 2 minuty
             ]
         ),
         new Put(),
-        new Delete()
+        new Delete(),
     ]
 )]
 #[ApiResource(
@@ -48,7 +46,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
             controller: NewApplicationsController::class,
             cacheHeaders: [
                 'max_age' => 3600,  // 1 godzina
-                'shared_max_age' => 7200  // 2 godziny
+                'shared_max_age' => 7200,  // 2 godziny
             ]
         ),
     ]
@@ -60,7 +58,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
             controller: ReadApplicationsController::class,
             cacheHeaders: [
                 'max_age' => 86400,  // 1 dzień
-                'shared_max_age' => 604800  // 7 dni
+                'shared_max_age' => 604800,  // 7 dni
             ]
         ),
     ]
@@ -78,7 +76,6 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
   ])]
 class Application
 {
-
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

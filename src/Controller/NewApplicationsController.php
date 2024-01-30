@@ -16,7 +16,7 @@ class NewApplicationsController extends AbstractController
     public function __invoke(Request $request): array
     {
         $orderBy = $request->query->all();
-        
+
         $application = $this->applicationRepository->findByReadStatusAndOrder(false, $orderBy['order']);
 
         return $application;
