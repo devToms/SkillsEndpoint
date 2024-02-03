@@ -28,8 +28,9 @@ class ApplicationRepository extends ServiceEntityRepository
             ->setParameter('readStatus', $readStatus);
 
         foreach ($orderBy as $field => $direction) {
+      //      print_r($direction);
             if (in_array($field, ['id', 'firstName', 'lastName', 'email', 'phoneNumber', 'expectedSalary', 'position', 'level', 'isRead'])) {
-                $queryBuilder->addOrderBy('a.'.$field, $direction);
+                $queryBuilder->addOrderBy('a.' . $field, $direction);
             }
         }
 
