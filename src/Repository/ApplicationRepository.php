@@ -26,7 +26,7 @@ class ApplicationRepository extends ServiceEntityRepository
         $queryBuilder = $this->createQueryBuilder('a')
             ->andWhere('a.isRead = :readStatus')
             ->setParameter('readStatus', $readStatus);
-
+            
         foreach ($orderBy as $field => $direction) {
             if (in_array($field, ['id', 'firstName', 'lastName', 'email', 'phoneNumber', 'expectedSalary', 'position', 'level', 'isRead'])) {
                 $queryBuilder->addOrderBy('a.'.$field, $direction);
