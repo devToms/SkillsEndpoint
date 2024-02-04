@@ -19,7 +19,7 @@ class NewApplicationsController extends AbstractController
 
         $order = isset($data['order']) ? $data['order'] : [];
 
-        $application = $this->applicationRepository->findByReadStatusAndOrder(false, $data['order']);
+        $application = $this->applicationRepository->findByReadStatusAndOrder(false, $order);
 
         return $application;
     }
