@@ -44,10 +44,10 @@ use Symfony\Component\Validator\Constraints as Assert;
         new GetCollection(
             uriTemplate: '/application/new-aplications',
             controller: NewApplicationsController::class,
-            // cacheHeaders: [
-            //     'max_age' => 3600,  // 1 godzina
-            //     'shared_max_age' => 7200,  // 2 godziny
-            // ]
+            cacheHeaders: [
+                'max_age' => 3600,  // 1 godzina
+                'shared_max_age' => 7200,  // 2 godziny
+            ]
         ),
     ]
 )]
@@ -56,10 +56,10 @@ use Symfony\Component\Validator\Constraints as Assert;
         new GetCollection(
             uriTemplate: '/application/read-apliactions',
             controller: ReadApplicationsController::class,
-            // cacheHeaders: [
-            //     'max_age' => 86400,  // 1 dzień
-            //     'shared_max_age' => 604800,  // 7 dni
-            // ]
+            cacheHeaders: [
+                'max_age' => 86400,  // 1 dzień
+                'shared_max_age' => 604800,  // 7 dni
+            ]
         ),
     ]
 )]
