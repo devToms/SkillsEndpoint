@@ -17,9 +17,9 @@ class ReadApplicationsController extends AbstractController
     {
         $data = $request->query->all();
 
-        $order = isset($data['order']) ? $data['order'] : [];
+        $orderBy = $data['order'] ?? [];
 
-        $application = $this->applicationRepository->findByReadStatusAndOrder(true, $order);
+        $application = $this->applicationRepository->findByReadStatusAndOrder(true, $orderBy);
 
         return $application;
     }
