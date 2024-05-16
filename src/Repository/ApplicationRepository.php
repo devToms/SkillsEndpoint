@@ -21,9 +21,8 @@ class ApplicationRepository extends ServiceEntityRepository
         parent::__construct($registry, Application::class);
     }
 
-    public function findByReadStatusAndOrder(bool $readStatus,array $orderBy = [])
+    public function findByReadStatusAndOrder(bool $readStatus,array $orderBy = []): array
     {
-    //  dump($orderBy);
         $queryBuilder = $this->createQueryBuilder('a')
             ->andWhere('a.isRead = :readStatus')
             ->setParameter('readStatus', $readStatus);
@@ -33,6 +32,7 @@ class ApplicationRepository extends ServiceEntityRepository
                 $queryBuilder->addOrderBy('a.'.$field, $direction);
             }
         }
+
 
         return $queryBuilder->getQuery()->getResult();
     }
