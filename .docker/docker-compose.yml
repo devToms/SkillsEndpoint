@@ -21,15 +21,16 @@ services:
             args:
                 TIMEZONE: ${TIMEZONE}
         volumes:
-            - ../:/var/www/symfony:cached
-            - symfony_app_var:/var/www/symfony/var
-            - symfony_app_vendor:/var/www/symfony/vendor
+            - ../:/var/www/symfony  # Mapowanie całego projektu
+            - ../vendor:/var/www/symfony/vendor  # Mapowanie folderu vendor
+            - ../var:/var/www/symfony/var  # Mapowanie folderu var
+        working_dir: /var/www/symfony
         networks:
             - symfony_app
 
         env_file:
             - .env
-            
+             
     nginx:
         build:
             context: ./nginx

@@ -24,10 +24,10 @@ services:
             - '../src/Kernel.php'
 
    
-    # App\Repository\ApplicationRepository:
-    #     arguments:
-    #         $registry: '@doctrine'
-    #     tags: ['doctrine.repository_service']
+    App\Repository\ApplicationRepository:
+        arguments:
+            $registry: '@doctrine'
+        tags: ['doctrine.repository_service']
 
   
     App\Provider\ApplicationDataProvider:
