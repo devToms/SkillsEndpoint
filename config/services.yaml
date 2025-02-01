@@ -23,5 +23,15 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+   
+    # App\Repository\ApplicationRepository:
+    #     arguments:
+    #         $registry: '@doctrine'
+    #     tags: ['doctrine.repository_service']
+
+  
+    App\Provider\ApplicationDataProvider:
+        arguments:
+            $applicationRepository: '@App\Repository\ApplicationRepository'
+        tags: ['api_platform.state_provider']
+

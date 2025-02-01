@@ -31,34 +31,32 @@ use Symfony\Component\Validator\Constraints as Assert;
             uriTemplate: '/application/{id}',
             requirements: ['id' => '\d+'],
             cacheHeaders: [
-                'max_age' => 60,  // 1 minuta
-                'shared_max_age' => 120,  // 2 minuty
+                'max_age' => 60,  
+                'shared_max_age' => 120, 
             ]
         ),
         new Put(),
         new Delete(),
-    ]
-)]
-#[ApiResource(
-    operations: [
         new GetCollection(
-            uriTemplate: '/application/new-aplications',
-            controller: NewApplicationsController::class,
+            uriTemplate: '/application/new-applications',
+            provider: ApplicationDataProvider::class,
+            options: [
+                'read_status' => false,
+            ],
             cacheHeaders: [
-                'max_age' => 3600,  // 1 godzina
-                'shared_max_age' => 7200,  // 2 godziny
+                'max_age' => 3600, 
+                'shared_max_age' => 7200, 
             ]
         ),
-    ]
-)]
-#[ApiResource(
-    operations: [
         new GetCollection(
-            uriTemplate: '/application/read-apliactions',
-            controller: ReadApplicationsController::class,
+            uriTemplate: '/application/read-applications',
+            provider: ApplicationDataProvider::class,
+            options: [
+                'read_status' => true, 
+            ],
             cacheHeaders: [
-                'max_age' => 86400,  // 1 dzień
-                'shared_max_age' => 604800,  // 7 dni
+                'max_age' => 86400, 
+                'shared_max_age' => 604800, 
             ]
         ),
     ]
@@ -70,7 +68,7 @@ use Symfony\Component\Validator\Constraints as Assert;
   'email',
   'position',
   'level',
-  ])]
+])]
 class Application
 {
     #[ORM\Id]
@@ -180,7 +178,6 @@ class Application
     {
         $this->expectedSalary = $expectedSalary;
 
-        // Automatyczne ustawienie poziomu na podstawie oczekiwanego wynagrodzenia
         if ($expectedSalary < 5000) {
             $this->level = 'junior';
         } elseif ($expectedSalary >= 5000 && $expectedSalary <= 9999) {
