@@ -12,7 +12,6 @@ final class ApplicationDataProvider implements ProviderInterface
     public function __construct(
         private readonly ApplicationRepositoryInterface $applicationRepository,
         private readonly LoggerInterface $logger
-
     ) {}
 
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): iterable
