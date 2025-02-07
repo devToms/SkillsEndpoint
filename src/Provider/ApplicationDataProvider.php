@@ -29,8 +29,8 @@ final class ApplicationDataProvider implements ProviderInterface
 
             return $result;
         } catch (\Exception $e) {
-            $this->logger->error('Błąd podczas wykonywania zapytania', ['exception' => $e]);
-            throw new NotFoundHttpException('Dane nie zostały znalezione.');
+            $this->logger->error('Error executing query', ['exception' => $e]);
+            throw new NotFoundHttpException('Data not found.');
         } 
     }
 }

@@ -29,16 +29,15 @@ class ApplicationReadListener implements EventSubscriberInterface
             return;
         }
 
-        $application = $this->applicationRepository->findOneBy([
-          'id' => $id,
-          'isRead' => false,
-        ]);
-
-        if ($application) {
-            $application->setIsRead(true);
-
-            $this->manager->flush();
-        }
+         $queryBuilder = $this->applicationRepository->createQueryBuilder('a');
+	 $queryBuilder
+		->update()
+		->set('a.isRead', 'true')
+		->where('a.id = :id')
+		->andWhere('a.isRead = false')
+		->setParameter('id', $id)
+		->getQuery()
+		->execute(); 
     }
 
     public static function getSubscribedEvents()
