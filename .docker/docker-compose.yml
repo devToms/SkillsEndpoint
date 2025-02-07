@@ -21,9 +21,9 @@ services:
             args:
                 TIMEZONE: ${TIMEZONE}
         volumes:
-            - ../:/var/www/symfony  # Mapowanie całego projektu
-            - ../vendor:/var/www/symfony/vendor  # Mapowanie folderu vendor
-            - ../var:/var/www/symfony/var  # Mapowanie folderu var
+            - ../:/var/www/symfony  
+            - ../vendor:/var/www/symfony/vendor 
+            - ../var:/var/www/symfony/var  
         working_dir: /var/www/symfony
         networks:
             - symfony_app
@@ -52,3 +52,4 @@ volumes:
 
 networks:
     symfony_app:
+#dodac redisa

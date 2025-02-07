@@ -29,15 +29,15 @@ class ApplicationReadListener implements EventSubscriberInterface
             return;
         }
 
-         $queryBuilder = $this->applicationRepository->createQueryBuilder('a');
-	 $queryBuilder
-		->update()
-		->set('a.isRead', 'true')
-		->where('a.id = :id')
-		->andWhere('a.isRead = false')
-		->setParameter('id', $id)
-		->getQuery()
-		->execute(); 
+        $queryBuilder = $this->applicationRepository->createQueryBuilder('a');
+        $queryBuilder
+            ->update()
+            ->set('a.isRead', 'true')
+            ->where('a.id = :id')
+            ->andWhere('a.isRead = false')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->execute(); 
     }
 
     public static function getSubscribedEvents()
