@@ -19,7 +19,7 @@ final class ApplicationDataProvider implements ProviderInterface
         try {
             $options = $operation->getOptions();
             $readStatus = $options['read_status'] ?? false;
-            $queryBuilder = $this->applicationRepository->findByReadStatusAndOrder(false);
+            $queryBuilder = $this->applicationRepository->findByReadStatusAndOrder($readStatus);
             $result = $queryBuilder->getQuery()->getResult();
             $this->logger->info('Query result', ['data' => $result]);
             return $result;
