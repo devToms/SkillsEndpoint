@@ -22,7 +22,6 @@ class ApplicationReadListener implements EventSubscriberInterface
     public function onKernelRequest(RequestEvent $event): void
     {
         $request = $event->getRequest();
-
         $id = $request->attributes->get('id');
 
         if (!$id || !$request->isMethod(Request::METHOD_GET)) {
